@@ -1,0 +1,38 @@
+{
+  "name": "yabin",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.8",
+    "@types/fs-extra": "^9.0.2",
+    "@types/node": "^14.14.6",
+    "@types/shelljs": "^0.8.8",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "fs-extra": "^9.0.1",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.6",
+    "nord": "^0.2.1",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^1.12.4",
+    "rimraf": "^3.0.2",
+    "shelljs": "^0.8.4",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "copy-assets": "ts-node tools/copyAssets",
+    "tsc": "tsc",
+    "parcel": "parcel build src/public/js/main.ts -d dist/public/",
+    "scss": "node-sass src/style.scss dist/public/css/style.css",
+    "build": "npm-run-all clean tsc scss parcel copy-assets",
+    "dev:start": "npm-run-all build start",
+    "dev": "nodemon --watch src -e ts,ejs,scss --exec yarn run dev:start",
+    "start": "ts-node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

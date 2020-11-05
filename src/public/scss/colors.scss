@@ -1,0 +1,27 @@
+@import "../../../node_modules/nord/src/sass/nord";
+
+body {
+  background-color: $nord0;
+  color: $nord8;
+}
+
+nav {
+  background-color: $nord2;
+  color: $nord9;
+  box-shadow: none;
+}
+
+
+#textarea1 {
+  color: $nord6;
+}
+#linum {
+  color: $nord3;
+}
+
+footer {
+  background-color: $nord0 !important;
+  p {
+    color: $nord8;
+  }
+}
