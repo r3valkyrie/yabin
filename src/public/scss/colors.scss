@@ -5,22 +5,60 @@ body {
   color: $nord8;
 }
 
+.savebartext {
+  color: $nord3;
+}
+
 nav {
   background-color: $nord2;
   color: $nord9;
   box-shadow: none;
 }
 
+.btn-large {
+  box-shadow: none;
 
-#textarea1 {
-  color: $nord6;
 }
-#linum {
-  color: $nord3;
+
+.logo {
+  p {
+    color: $nord0;
+  }
+  h1 {
+    color: $nord9;
+  }
+  .close {
+    color: $nord0;
+  }
+}
+
+.blue {
+  background-color: $nord10 !important;
+}
+
+.red {
+  background-color: $nord11 !important;
+}
+
+.active {
+  background-color: $nord1;
+}
+
+.side-panel {
+  background-color: $nord1;
+}
+
+.sidenav {
+  background-color: $nord6;
+}
+
+.CodeMirror-linenumbers {
+  border-right: 1px solid $nord1
 }
 
 footer {
   background-color: $nord0 !important;
+
   p {
     color: $nord8;
   }

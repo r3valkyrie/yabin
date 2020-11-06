@@ -4,6 +4,7 @@
       "es6",
       "dom"
     ],
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "allowJs": true,
     "target": "es5",
