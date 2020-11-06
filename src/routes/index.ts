@@ -5,7 +5,13 @@ import sha1 from 'sha1';
 
 dotenv.config()
 
+let url:string = process.env.APP_URL
+if (url.slice(-1) !== '/'){
+    url = url.concat('/')
+}
+
 export const register = (app: express.Application) => {
+
     app.use(bodyParser.urlencoded({extended: false}))
     app.use(bodyParser.json())
     app.get('/', (req: any, res) => {
@@ -13,7 +19,8 @@ export const register = (app: express.Application) => {
     })
 
     app.post('/new', (req: any, res) => {
-        res.send(sha1(req.body.content))
+        const key = 'keyhere'
+        const hash = sha1(req.body.content).slice(0, 20)
+        res.send(`${url}${key}/${hash}`)
     })
-    console.log(process.env.APP_URL[-1])
 }
