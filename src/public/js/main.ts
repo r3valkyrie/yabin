@@ -44,29 +44,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Saving a paste.
-    interface YabinPaste {
-        content: string                     // The content of the paste
-        date: number                        // The timestamp (Date.now())
-        lang: string | null | undefined     // The programming language (will guess if null)
-    }
-
     const saveBtn = document.getElementById('save') as HTMLElement;
+    const url = document.getElementById('paste-url') as HTMLInputElement;
+    const copyURLBtn = document.getElementById('copyURLButton') as HTMLButtonElement;
+
+    url.value = ''
 
     saveBtn.addEventListener('click', function() {
+        saveBtn.classList.add('disabled')
         axios.post(
             '/new',
-            <YabinPaste>{
+            {
                 content: editor.getValue(),
-                date: Date.now(),
-                lang: null
+                lang: null,
+                expire: null,
             }
         )
             .then(res => {
-                console.log(res)
+                url.value = res.data;
+                saveBtn.classList.remove('disabled')
+                copyURLBtn.classList.remove('disabled')
             })
             .catch(e => {console.log(e)})
 
+    })
+
+
+    copyURLBtn.addEventListener('click', function() {
+        url.select();
+        url.setSelectionRange(0, 99999);
+        document.execCommand('copy');
     })
 });
 

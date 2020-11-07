@@ -52,8 +52,19 @@ nav {
   background-color: $nord6;
 }
 
-.CodeMirror-linenumbers {
+.CodeMirror-linenumbers, .linenum-container {
   border-right: 1px solid $nord1
+}
+
+.input-field label {
+  background-color: transparent;
+  color: $nord3;
+}
+
+#copyURLButton {
+  background-color: $nord14;
+  color: $nord5;
+  box-shadow: none;
 }
 
 footer {
@@ -62,4 +73,16 @@ footer {
   p {
     color: $nord8;
   }
+}
+
+.nojs {
+  color: $nord4;
+}
+
+.yabin-linenum {
+  color: $nord3;
+}
+
+.yabin-content {
+  color: $nord5;
 }

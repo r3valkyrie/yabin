@@ -53,8 +53,13 @@ body {
 
 .CodeMirror {
   height: 100vh;
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 15px !important;
 }
-
+.CodeMirror-linenumber {
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 15px !important;
+}
 .vim-command-container {
   position: fixed;
   bottom: 10px;
@@ -66,3 +71,54 @@ body {
   right: 10px;
   position: fixed;
 }
+
+.code-container {
+  min-height: 100vh
+}
+
+#paste-url {
+  font-size: 15px;
+  font-family: 'Inconsolata', sans-serif;
+}
+
+
+.urlButtonContainer {
+  text-align: center;
+}
+
+.linenum-container, .content-container {
+  margin: 0;
+  padding-top: 4px;
+  display: inline-block;
+  min-height: 100vh;
+
+  .yabin-linenum {
+    padding: 0 3px 0 5px;
+    min-width: 20px;
+    text-align: right;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  p {
+    font-family: 'Inconsolata', sans-serif;
+    font-size: 15px;
+    margin: 0;
+  }
+}
+.linenum-container {
+  padding-left: 9px;
+  min-width: 20px;
+  text-align: right;
+  white-space: normal;
+  user-select: none;
+}
+
+.nojs {
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 15px;
+  display: block;
+  margin: auto;
+}
+
+
