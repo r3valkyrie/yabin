@@ -7,7 +7,7 @@ import * as routes from './routes'
 dotenv.config()
 
 const app = express();
-const port = process.env.SERVER_PORT;
+const port = parseInt(process.env.SERVER_PORT);
 
 // Use EJS.
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +19,6 @@ app.use(express.static(path.join(__dirname, '../dist/public')));
 // Register our routes.
 routes.register(app)
 
-app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Yabin instance started on port ${port}`)
 });
