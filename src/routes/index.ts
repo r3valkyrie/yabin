@@ -1,6 +1,7 @@
 import * as express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import {AES, enc} from 'crypto-ts';
 import sha1 from 'sha1';
 import {mdb_put, mdb_find} from '../db';
 
@@ -51,12 +52,14 @@ export const register = (app: express.Application) => {
     })
 
     app.post('/new', (req, res) => {
-        const hash = sha1(req.body.content).slice(0, 24)
+        const hash = sha1(req.body.content).slice(0, 24);
+        const data: YabinPaste = {...req.body, date: Date.now()};
+        const content = data.content;
+        let encryptedData: YabinPaste = {...data}
+        encryptedData.content = AES.encrypt(JSON.stringify({content}), hash).toString()
 
-        const data: YabinPaste = {...req.body, date: Date.now()}
-
-        mdb_put(data)
-            .then( (p:{insertedId: string}) => {
+        mdb_put(encryptedData)
+            .then((p: { insertedId: string }) => {
                 console.log(`Generated URL: ${url}${p.insertedId}/${hash}`)
                 res.send(`${url}${p.insertedId}/${hash}`)
             })
@@ -68,14 +71,33 @@ export const register = (app: express.Application) => {
     app.get('*', (req, res) => {
         const stripped = req.path.replace('/', '');
         const id: string = stripped.slice(0, 24)
-        const key: string = stripped.slice (25, 49)
-
-
-        mdb_find(id)
-            .then((paste:YabinPaste) => {
-                const lines = getLineNumbers(paste.content)
-                const content = formatHTML(paste.content)
-                res.render('viewpaste', {lines, content})
+        const key: string = stripped.slice(25, 49)
+        if (id.length !== 24) {
+            res.render('viewpaste', {
+                lines: 1,
+                content: "This paste cannot be found."
             })
+        } else {
+            mdb_find(id)
+                .then((paste: YabinPaste) => {
+                    try {
+                        const decryptedContent = AES.decrypt(paste.content.toString(), key).toString(enc.Utf8)
+                        if (decryptedContent) {
+                            // You have to do this cursed JSON parsing for it to work properly...
+                            const decryptedContentParsed = JSON.parse(decryptedContent).content
+                            const lines = getLineNumbers(decryptedContentParsed)
+                            const content = formatHTML(decryptedContentParsed)
+                            res.render('viewpaste', {lines, content})
+                        }
+                    }
+                    catch {
+                        res.render('viewpaste', {
+                            lines: 1,
+                            content: paste.content
+                        })
+                    }
+                })
+        }
+
     })
 }
