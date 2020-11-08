@@ -3,11 +3,10 @@ import {MongoClient, ObjectID} from 'mongodb';
 
 dotenv.config()
 
+
 interface YabinPaste {
-    content: string,
-    lang: string | null | undefined,
-    date: number,
-    expire: number | null | undefined,
+    content: string
+    encrypted: boolean
 }
 
 const {

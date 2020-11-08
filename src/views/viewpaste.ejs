@@ -2,11 +2,32 @@
 <html lang="en">
 <%- include('partials/meta', {title: 'View Paste'}); %>
 <body>
+
 <div class="linenum-container">
-    <p class="yabin-linenum"><%- lines %></p>
+    <p class="yabin-linenum" id="yabin-linenum"><%- lines ? lines : null %></p>
 </div>
 <div class="content-container">
-    <p class="yabin-content"><%- content %></p>
+    <p class="yabin-content" id="yabin-content"><%- paste ? paste : null %></p>
 </div>
+
+<div id="decrypt-modal" class="modal">
+    <div class="modal-content">
+        <div class="row">
+            <div class="input-field col s9">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="decryption-key" type="password" class="validate">
+                <label for="decryption-key">Decryption Key</label>
+            </div>
+            <div class="input-field col s3">
+                <a id="enterDecryptionKey" class="btn-large waves-effect waves-light">Decrypt</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let paste = '<%- paste %>';
+    let encrypted = <%- encrypted %>
+</script>
+<script src="decrypt.js"></script>
 </body>
 </html>

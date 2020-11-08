@@ -61,12 +61,6 @@ nav {
   color: $nord3;
 }
 
-#copyURLButton {
-  background-color: $nord14;
-  color: $nord5;
-  box-shadow: none;
-}
-
 footer {
   background-color: $nord0 !important;
 
@@ -79,10 +73,29 @@ footer {
   color: $nord4;
 }
 
+.desc {
+  color: $nord1
+}
+
 .yabin-linenum {
   color: $nord3;
 }
 
 .yabin-content {
   color: $nord5;
+}
+
+#key-overlay {
+  background-color: $nord0;
+}
+
+.prefix {
+  background-color: $nord6 !important;
+}
+.modal {
+  background-color: $nord6 !important;
+}
+
+.key-form {
+  background-color: $nord6;
 }

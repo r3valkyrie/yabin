@@ -117,7 +117,11 @@ body {
   white-space: normal;
   user-select: none;
 }
-
+.desc {
+  line-height: 1.5em;
+  padding: 10px;
+  font-size: 13px;
+}
 .content-container {
   max-width: 85vw;
 }
@@ -127,6 +131,20 @@ body {
   font-size: 15px;
   display: block;
   margin: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.key-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 500px;
+  line-height: 100vh;
 }
 
 
